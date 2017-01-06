@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  watchdog:
+    build:
+      context: .docker/
+    entrypoint: sh
+    working_dir: /usr/share/app
+    volumes:
+      - ./:/usr/share/app
+      - ~/.cache/yarn:/root/.cache/yarn
+    env_file:
+      - ./config.env

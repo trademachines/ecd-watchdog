@@ -1,0 +1,23 @@
+{
+  "name": "ecd-watchdog",
+  "description": "",
+  "scripts": {
+    "test": "JASMINE_CONFIG_PATH=jasmine.json node_modules/.bin/istanbul cover node_modules/.bin/jasmine",
+    "coveralls": "cat ./coverage/lcov.info | node_modules/.bin/coveralls && rm -rf ./coverage",
+    "posttest": "node_modules/.bin/eslint src/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.7.18",
+    "lodash": "^4.17.2",
+    "moment": "^2.17.1",
+    "neo-async": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-google": "^0.7.1",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.2",
+    "jasmine-spec-reporter": "^2.7.0"
+  }
+}

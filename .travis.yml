@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - '4.3'
+cache:
+  yarn: true
+  directories:
+    - node_modules
+after_success:
+  - npm run coveralls
+before_deploy:
+  - yarn install --production
+deploy:
+  provider: lambda
+  function_name: ecd-watchdog
+  description: Manages state information of ECD deployments
+  module_name: index
+  handler_name: handle
+  role: arn:aws:iam::608300940987:role/lambda-ecd-watchdog
+  runtime: nodejs4.3
+  memory_size: 128
+  timeout: 10
+  region: eu-west-1
+  access_key_id:
+    secure: qO5T9U6PFl2VH8jAW9RYIHfsJKA7nh6wG1XaAGxcm/6F23V4ZplS1Nl1Z2d2IJERB4oCol2HiTrcedOx1xgHYWcYBfefHXptuw1OFI03B1v7gsfR5rGnTEHvrBKyx+BUVyFJGyLjfCkLFgzkxFRBHtyCNZNCbVEeAaFR4dRIM2DO90YDyFAbgV4Z0sL0UhHpWksl1/xUmyD3V+LRvX+Ntr/6YzlX5SWewaT3MgonSYiR3EteYFmr21TxCxdvauvUsIwk2KXx8V1l6EmwWmDbBrx1SjohoD9EhJrHWH28LbmzKjxCbIYecrmlXEt1lgjqPwQ9rkRZ95ZJHL2sVsxSKgPIpjzWMzE2gcURg8hPkkOafSVhno7annSgyyZFSpvOgBsY0G6Z6PAmYFUBuV/PvxCrYkE0PNt+TlXvJF0s52w48sRzhbqlEgy+VIxSm6UVFIqR7ZPO11NwYYtj3Ok7A5hZ8yuDIM6hBscMk1zpy3CiSs44nr3Kxt9PkkbG6TNDxXPG0jcjmhySLEw4yh65goQGchSIENIV+TWyuO0HhlKcr0PJ0H5MdZ8Qg0/+z8w5q+JCs4vMzfWbzAPzfypSGqrJ7tKEsEWAwRFgnEcwObO5hrZiMc26Ktok2YdON5MrlVlFho2DdKb7pKhgumX+3iIpDjcM1Vb0G0ff7NjayFQ=
+  secret_access_key:
+    secure: oxX1sAPDdP1NY4jM1EMSYI7/L5/Vh1aiVl8IGTAb0VuxOLNYQMW8Zn2HPA3HjJktXEIw7vx+pArM2hU/cv6TUQUTLisxcmI8X/829hJZanglTlPlXaOkKYwpf06iq/FukTzkaogdGVrmffvXoq4E2TUZDY0jTDhilfT9opKIv1exEwl9zGPDCRKaxaHqrnimue9c4vngozL6FZiV60I5owr0+egIJ2DqPPhb4V28NaJxMhutAMe+rVsx2iV5s6nv21JZg6UAnaYNWz3mZMaiaO6pdXCIHU/6+8N+gq58XNWPUiV2vqT+STUxlXvft3VgHeQby8eRwwEMrwmfqeq+l+ZWbYguZCOdJ0D6uRzMbEd2a7Zz5E6Mr9VyuvlRro9ZU9fQcBSgUP9LsSTrOEhqshBD0uoxAaE1v4xSiE7kKavROGT5nriXj9a6eC/j9FK5cWHTRzoxy5iWYW5NfYDONf0N00zU90U/VZiQU4DX2JZpDAFRGw8Y1vywoDGQyhFNCksxbszjkWD4FaSxS1TQj6nKH6uTgrcvmDl+zxrvzOBhhSSKItKynO8gvPBomVsKoOY+xUOkC6D0x+HsyJaEKI3yEm0574VFZVQ2cBgNjmfeejtVNMcAKaoJKPsNlxfKdWLfwJiHcrcbNoEBDawOHasNDuWlMxA7Mxx/M5i0ue8=
+  on:
+    branch: master

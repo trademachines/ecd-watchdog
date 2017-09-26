@@ -15,11 +15,8 @@ module.exports = class Dispatcher {
   dispatch(event, cb) {
     switch (event.source) {
       case 'tm.ecd':
-      case 'tm.ecdc':
-        //
         switch (event['detail-type']) {
           case 'ECD Service Deployment Started':
-          case 'ECDC Service Deployment Started':
             this.deploymentHandler.start(event.detail, cb);
             break;
         }

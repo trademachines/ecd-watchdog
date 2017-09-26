@@ -16,4 +16,4 @@ module.exports.DeploymentType = {
   Empty: 'empty'
 };
 
-module.exports.ExpiredThresholdInSeconds = 60 * 5;
+module.exports.ExpiredThresholdInSeconds = 60 * 6;

@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '4.3'
+  - '12.6'
 cache:
   yarn: true
   directories:
@@ -16,7 +16,7 @@ deploy:
   module_name: index
   handler_name: handle
   role: arn:aws:iam::608300940987:role/lambda-ecd-watchdog
-  runtime: nodejs4.3
+  runtime: nodejs12.x
   memory_size: 128
   timeout: 10
   region: eu-west-1
